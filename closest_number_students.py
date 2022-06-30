@@ -1,7 +1,6 @@
 import csv
 import os
 import random
-from re import I
 
 def closest_number_students(num):
 
@@ -16,24 +15,21 @@ def closest_number_students(num):
         reader = csv.DictReader(csvfile)
         for row in reader:
             students.append(row)
-    
+
+    closest= num
+    closest_student={}
     rolls=[]
     for student in students:
         roll=random.randint(1,num)
         if roll not in rolls:
             rolls.append(roll)
             student["Number"]= roll
+            if abs(random_number-roll) < closest:
+                closest= abs(random_number-roll)
+                closest_student=student
 
-    # print(students)
+    print(students)
     # print(rolls)
-    
-    closest=num
-    closest_student={}
-    for student in students:
-        if abs(random_number-int(student["Number"])) < closest:
-            closest= abs(random_number-int(student["Number"]))
-            # print(f"closest: {closest}")
-            closest_student=student
     
     return (closest_student)
 
